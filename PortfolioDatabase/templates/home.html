@@ -1,3 +1,21 @@
-<h1>Welcome to My Portfolio</h1>
-<p>Hello, my name is Caiden. This is my portfolio website built with Django.</p>
-<p>Here you’ll find info about my hobbies, my portfolio projects, and how to contact me.</p>
+{% extends "base.html" %}
+
+{% block title %}Home - Caiden{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+  <div class="container">
+    <h1>Welcome to My Portfolio</h1>
+  </div>
+</section>
+
+<section id="about" class="section bg-white text-center">
+  <div class="container">
+    <h2 class="mb-4">About Me</h2>
+    <p class="lead">
+      Hello! Welcome to my portfolio website I created using Python and Django. I am a passionate computer science student with a minor in cybersecurity and network management.
+      On this website you will find a portfolio of my projects, a page displaying my various hobbies, and a couple ways to contact me! I hope you enjoy navigating through this website.
+    </p>
+  </div>
+</section>
+{% endblock %}

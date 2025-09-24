@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}{{ hobby.name }} - Hobby{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg hobby-detail-card">
+        {% if hobby.image %}
+          <img src="{{ hobby.image.url }}" alt="{{ hobby.name }}" class="card-img-top hobby-img">
+        {% endif %}
+        <div class="card-body">
+          <h2 class="card-title text-center text-primary mb-3">{{ hobby.name }}</h2>
+          <p class="card-text">{{ hobby.description }}</p>
+          <div class="text-center mt-4">
+            <a href="{% url 'hobbies' %}" class="btn btn-outline-secondary hobby-btn">Back to Hobbies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Custom styles for Hobby Detail page */
+.hobby-detail-card {
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #fdfdfd;
+}
+
+.hobby-detail-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.hobby-img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  max-height: 350px;
+  object-fit: cover;
+  transition: filter 0.3s;
+}
+
+.hobby-img:hover {
+  filter: brightness(105%);
+}
+
+.hobby-btn {
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  transition: transform 0.2s;
+}
+
+.hobby-btn:hover {
+  transform: scale(1.05);
+}
+</style>
+{% endblock %}

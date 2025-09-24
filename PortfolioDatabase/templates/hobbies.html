@@ -1,14 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Hobbies</title>
-</head>
-<body>
-    <h1>My Hobbies</h1>
-    <ul>
-        {% for hobby in hobbies %}
-            <li><strong>{{ hobby.name }}</strong>: {{ hobby.description }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}My Hobbies{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4 text-center">My Hobbies</h1>
+  <div class="row">
+    {% for hobby in hobbies %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm hobby-card">
+          {% if hobby.image %}
+            <img src="{{ hobby.image.url }}" class="card-img-top hobby-img" alt="{{ hobby.name }}">
+          {% endif %}
+          <div class="card-body text-center">
+            <h5 class="card-title hobby-title">{{ hobby.name }}</h5>
+            <a href="{% url 'hobby_detail' hobby.id %}" class="btn btn-primary hobby-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center text-muted">No hobbies added yet.</p>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+/* Custom styles for Hobbies page */
+.hobby-card {
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hobby-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.hobby-img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.hobby-title {
+  font-weight: 700;
+  color: #0d6efd;
+  margin-bottom: 10px;
+}
+
+.hobby-btn {
+  border-radius: 30px;
+  padding: 0.5rem 1.2rem;
+}
+</style>
+{% endblock %}
